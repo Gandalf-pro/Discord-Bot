@@ -8,7 +8,7 @@ class Queue {
     connection?:VoiceConnection;
     songs: song[] = [];
     songHistory: song[] = [];
-    volume = 5;
+    volume = 0.5;
     playing = false;
     ytdlStream?: Readable;
     playRelatedSongs = false;
