@@ -9,7 +9,8 @@
     "build": "tsc",
     "prestart": "npm run build",
     "tsc": "tsc",
-    "dev": "cls && tsc && node build/index.js"
+    "dev": "cls && tsc && node build/index.js",
+    "spo": "tsc && node build/util/spotify.js"
   },
   "author": "Gandalf-pro",
   "license": "ISC",
@@ -18,9 +19,11 @@
     "bufferutil": "^4.0.1",
     "discord.js": "^12.2.0",
     "node-fetch": "^2.6.0",
+    "spotify-uri": "^2.1.0",
+    "spotify-url-info": "^1.4.0",
     "typescript": "^3.9.5",
     "ytdl-core": "^2.1.7",
-    "ytpl": "^0.1.21",
+    "ytpl": "^0.1.22",
     "ytsr": "^0.1.15"
   },
   "devDependencies": {

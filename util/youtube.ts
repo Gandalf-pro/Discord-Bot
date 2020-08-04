@@ -109,4 +109,26 @@ export async function play(guildId: string, song: song, seek?: number) {
     }
 }
 
+// function createProgressBar (guildID:any) {
+//     // Gets guild queue
+//     const queue = this.queues.find((g) => g.guildID === guildID)
+//     if (!queue) return
+//     // Stream time of the dispatcher
+//     const currentStreamTime = queue.voiceConnection.dispatcher
+//         ? queue.voiceConnection.dispatcher.streamTime + queue.additionalStreamTime
+//         : 0
+//     // Total stream time
+//     const totalTime = queue.playing.durationMS
+//     // Stream progress
+//     const index = Math.round((currentStreamTime / totalTime) * 15)
+//     // conditions
+//     if ((index >= 1) && (index <= 15)) {
+//         const bar = '▬▬▬▬▬▬▬▬▬▬▬▬▬▬'.split('')
+//         bar.splice(index, 0, '🔘')
+//         return bar.join('')
+//     } else {
+//         return '🔘▬▬▬▬▬▬▬▬▬▬▬▬▬▬'
+//     }
+// }
+
 async function addSongToQueue() {}

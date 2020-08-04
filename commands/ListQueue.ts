@@ -17,6 +17,7 @@ class ListQueue extends Command {
             return;
         }
 
+
         let text = "";
         guildData.queue.songs.forEach((element, i) => {
             text += i + 1 + "." + element.title + "\n";
