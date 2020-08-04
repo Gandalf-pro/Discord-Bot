@@ -36,7 +36,8 @@ class Join extends Command {
                     }, 0.5 * 60 * 1000);
                 }
                 bot = await bot.setNickname("FBI");
-                connection.play("D:\\Coding\\Javacript Projects\\DiscordBotv0.2\\sounds\\fbi.mp3", { volume: 4 });
+                // connection.play("D:\\Coding\\Javacript Projects\\DiscordBotv0.2\\sounds\\fbi.mp3", { volume: 4 });
+                connection.play("../sounds/fbi.mp3", { volume: 4 });
             }
         }
         return;
