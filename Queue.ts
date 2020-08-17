@@ -10,7 +10,7 @@ class Queue {
     songHistory: song[] = [];
     volume = 0.5;
     playing = false;
-    ytdlStream?: Readable;
+    // ytdlStream?: Readable;
     playRelatedSongs = false;
     constructor() {
     }
@@ -26,10 +26,10 @@ class Queue {
     }
 
     async skipSong() {
-        if (this.ytdlStream !== undefined) {
-            this.ytdlStream.destroy();
-            this.ytdlStream = undefined;
-        }
+        // if (this.ytdlStream !== undefined) {
+        //     this.ytdlStream.destroy();
+        //     this.ytdlStream = undefined;
+        // }
         let poped = this.songs.shift();
         if (poped) {
             this.songHistory.push(poped);

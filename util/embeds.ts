@@ -11,6 +11,7 @@ export async function sendAddedToQueueEmbed(guildId: string) {
     let serverQueue = vault.guildData.get(guildId)!.queue;
     let textChannel = serverQueue.textChannel!;
     let song = serverQueue.songs[serverQueue.songs.length - 1];
+    let time = `${Math.floor(song.durationSec / 60)}:${song.durationSec % 60}`;
     // textChannel.send(`${song.title} has been added to the queue!`);
     let rich = new MessageEmbed()
         .setColor("#553778")
@@ -18,7 +19,8 @@ export async function sendAddedToQueueEmbed(guildId: string) {
         .setURL(song.url)
         .setAuthor("Has Been Added To The Queue")
         .setThumbnail(song.thum)
-        .addField("DJ:", song.requestedBy, false);
+        .addField("DJ:", song.requestedBy, true)
+        .addField("Time:", time, true);
     textChannel.send(rich).then((mes) => {
         delAfterMin(mes, 0.5);
     });
@@ -28,13 +30,15 @@ export async function sendNowPlayingEmbed(guildId: string) {
     let serverQueue = vault.guildData.get(guildId)!.queue;
     let textChannel = serverQueue.textChannel!;
     let song = serverQueue.songs[0];
+    let time = `${Math.floor(song.durationSec / 60)}:${song.durationSec % 60}`;
     const rich = new MessageEmbed()
         .setColor("#553778")
         .setTitle(song.title)
         .setURL(song.url)
         .setAuthor("Now Playing")
         .setThumbnail(song.thum)
-        .addField("DJ:", song.requestedBy, false);
+        .addField("DJ:", song.requestedBy, true)
+        .addField("Time:", time, true);
     textChannel.send(rich).then((mes) => {
         delAfterMin(mes, 1.5);
     });

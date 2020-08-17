@@ -9,17 +9,19 @@ export interface song {
     url: string;
     thum: string;
     requestedBy: string;
+    durationSec: number;
 }
 
 async function getSongFromUrl(url: string, username: string) {
     try {
         const songInfo = await ytdl.getInfo(url);
-        console.log("TimeStamp:", songInfo.timestamp);
-        let retSong = {
+        console.log("TimeStamp:", songInfo.timestamp);        
+        let retSong:song = {
             title: songInfo.player_response.videoDetails.title,
             url: url,
             thum: songInfo.player_response.videoDetails.thumbnail.thumbnails[0].url,
             requestedBy: username,
+            durationSec: songInfo.player_response.videoDetails.lengthSeconds,
         };
         return retSong;
     } catch (error) {
@@ -35,11 +37,16 @@ async function searchSong(name: string, username: string) {
     if (songData === undefined) {
         throw "Can't search";
     }
-    let song = {
+    let splitTime = songData.duration.split(":");
+    let seconds = (Number(splitTime[0]) * 60) + Number(splitTime[1])
+    
+    
+    let song:song = {
         title: songData.title,
         url: songData.link,
         thum: songData.thumbnail,
         requestedBy: username,
+        durationSec: seconds,
     };
 
     return song;
@@ -92,8 +99,8 @@ export async function play(guildId: string, song: song, seek?: number) {
     if (seek !== undefined) {
         strmOptions.seek = seek;
     }
-    serverQueue.ytdlStream = ytdl(song.url, { filter: "audio", highWaterMark: 1 << 25 }); //32mb
-    const dispatcher = serverQueue.connection!.play(serverQueue.ytdlStream, strmOptions);
+    // serverQueue.ytdlStream = ytdl(song.url, { filter: "audio", highWaterMark: 1 << 25 }); //32mb
+    const dispatcher = serverQueue.connection!.play(ytdl(song.url, { filter: "audio", highWaterMark: 1 << 25 }), strmOptions);
     dispatcher
         .on("finish", async () => {
             console.log("Music ended!");
