@@ -10,6 +10,7 @@ export interface song {
     thum: string;
     requestedBy: string;
     durationSec: number;
+    seekedSec?: number;
 }
 
 async function getSongFromUrl(url: string, username: string) {
@@ -114,6 +115,13 @@ export async function play(guildId: string, song: song, seek?: number) {
     if (seek === undefined) {
         sendNowPlayingEmbed(guildId);
     }
+}
+
+export function getCurrentTime(guildID: any) {
+    let guildData = vault.guildData.get(guildID)!;
+    if (!guildData.queue.connection) throw { status: "bad" };
+    let time = (guildData.queue.connection.dispatcher.streamTime / 1000) + (guildData.queue.songs[0].seekedSec ? guildData.queue.songs[0].seekedSec : 0);
+    return time;
 }
 
 // function createProgressBar (guildID:any) {

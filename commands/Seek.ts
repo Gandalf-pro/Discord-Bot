@@ -51,6 +51,11 @@ class Seek extends Command {
         // }
         connection.dispatcher.removeAllListeners("finish");
 
+        if (guildData!.queue.songs[0].seekedSec === undefined) {
+            guildData!.queue.songs[0].seekedSec = seek;
+        } else {
+            guildData!.queue.songs[0].seekedSec += seek;
+        }
         connection.dispatcher.end(() => {
             play(msg.guild!.id, guildData!.queue.songs[0], seek);
         });
