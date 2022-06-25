@@ -18,7 +18,7 @@
     "@discordjs/opus": "^0.3.2",
     "bufferutil": "^4.0.1",
     "discord.js": "^12.2.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "spotify-uri": "^2.1.0",
     "spotify-url-info": "^1.4.0",
     "typescript": "^3.9.5",
