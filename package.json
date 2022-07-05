@@ -15,7 +15,7 @@
   "author": "Gandalf-pro",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/opus": "^0.3.2",
+    "@discordjs/opus": "^0.8.0",
     "bufferutil": "^4.0.1",
     "discord.js": "^12.2.0",
     "node-fetch": "^2.6.0",
